@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teman Wisata - Final Project</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap"
+        rel="stylesheet">
+
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #FF7E5F;
+            --primary-dark: #e66547;
+            --secondary: #4B6CB7;
+            --secondary-dark: #3a5591;
+            --accent: #FEB47B;
+            --dark: #2C3E50;
+            --light: #F5F7FA;
+            --white: #FFFFFF;
+            --glass: rgba(255, 255, 255, 0.95);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --radius: 20px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: var(--dark);
+            background: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 1rem 5%;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--secondary);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        .nav-links a {
+            margin-left: 2rem;
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 5%;
+            background:
+                radial-gradient(circle at 10% 20%, rgba(255, 126, 95, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(75, 108, 183, 0.1) 0%, transparent 40%);
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .badge {
+            background: rgba(75, 108, 183, 0.1);
+            color: var(--secondary);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--dark) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: #666;
+            margin-bottom: 2.5rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 10px 20px rgba(255, 126, 95, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(255, 126, 95, 0.4);
+        }
+
+        /* Section Styling */
+        section {
+            padding: 6rem 10%;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 4rem auto;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .section-header p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        /* Card Grid */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+            border: 1px solid rgba(0, 0, 0, 0.03);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .card p {
+            color: #666;
+        }
+
+        /* Problem/Solution Side by Side */
+        .split-section {
+            background: white;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .split-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .split-content p {
+            margin-bottom: 1.5rem;
+            color: #555;
+            font-size: 1.1rem;
+        }
+
+        .feature-list li {
+            list-style: none;
+            padding-left: 2rem;
+            position: relative;
+            margin-bottom: 0.8rem;
+            color: #555;
+        }
+
+        .feature-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .split-image {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: var(--radius);
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            color: var(--secondary);
+            box-shadow: var(--shadow);
+        }
+
+        /* Tech Stack */
+        .tech-pill {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            margin: 0.5rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            font-weight: 600;
+            color: var(--dark);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 5%;
+            text-align: center;
+        }
+
+        footer p {
+            opacity: 0.7;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .split-section {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 4rem 5%;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <a href="#" class="logo">Teman<span>Wisata</span></a>
+        <div class="nav-links">
+            <a href="#about">Latar Belakang</a>
+            <a href="#features">Fitur</a>
+            <a href="#tech">Teknologi</a>
+            <a href="#demo">Demo</a>
+        </div>
+    </nav>
+
+    <div class="hero">
+        <div class="hero-content" data-aos="fade-up">
+            <span class="badge">Final Project AI Bootcamp</span>
+            <h1>Jelajahi Indonesia bersama Teman Wisata</h1>
+            <p>Sahabat perjalanan cerdas yang siap menemani eksplorasi budaya, kuliner, dan keindahan nusantara.</p>
+            <a href="#demo" class="cta-button">Mulai Petualangan</a>
+        </div>
+    </div>
+
+    <section id="about" class="split-section">
+        <div class="split-content" data-aos="fade-right">
+            <h2>Masalah & Latar Belakang</h2>
+            <p>Indonesia adalah negara kepulauan dengan ribuan budaya unik. Namun, informasi mendalam mengenai hal ini
+                seringkali:</p>
+            <ul class="feature-list">
+                <li>Tersebar dan sulit ditemukan dalam satu tempat terpadu.</li>
+                <li>Kurang interaktif, hanya berupa teks statis panjang.</li>
+                <li>Generasi muda mulai kehilangan koneksi dengan sejarah lokal.</li>
+            </ul>
+        </div>
+        <div class="split-image" data-aos="fade-left">
+            🌏
+        </div>
+    </section>
+
+    <section style="background: var(--light);">
+        <div class="split-section">
+            <div class="split-image" data-aos="fade-right"
+                style="background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%); color: white;">
+                🤖
+            </div>
+            <div class="split-content" data-aos="fade-left">
+                <h2>Solusi Kami</h2>
+                <p><strong>Teman Wisata</strong> hadir sebagai sahabat digital Anda.</p>
+                <p>Menggunakan kekuatan LLM (Large Language Model) Llama 3.3, chatbot ini berperan sebagai pemandu
+                    wisata pribadi yang:</p>
+                <ul class="feature-list">
+                    <li>Dapat diajak berdiskusi secara natural.</li>
+                    <li>Memahami konteks spesifik daerah (Bali, Jawa, Sumatra, dll).</li>
+                    <li>Memberikan rekomendasi kuliner dan wisata sejarah.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="features">
+        <div class="section-header" data-aos="fade-up">
+            <h2>Fitur Utama</h2>
+            <p>Didesain untuk pengalaman pengguna yang intuitif dan edukatif.</p>
+        </div>
+        <div class="grid">
+            <div class="card" data-aos="fade-up" data-aos-delay="100">
+                <div class="card-icon">💬</div>
+                <h3>Chat Interaktif</h3>
+                <p>Antarmuka chatting modern yang responsif, mirip dengan aplikasi pesan populer, memudahkan pengguna
+                    bertanya apa saja.</p>
+            </div>
+            <div class="card" data-aos="fade-up" data-aos-delay="200">
+                <div class="card-icon">🗺️</div>
+                <h3>Fokus Regional</h3>
+                <p>Fitur unik untuk memfokuskan konteks jawaban pada daerah tertentu seperti Bali, Jawa, Sumatra, atau
+                    Sulawesi.</p>
+            </div>
+            <div class="card" data-aos="fade-up" data-aos-delay="300">
+                <div class="card-icon">💾</div>
+                <h3>Smart History</h3>
+                <p>Menyimpan riwayat percakapan secara otomatis sehingga pengguna dapat melanjutkan diskusi kapan saja.
+                </p>
+            </div>
+            <div class="card" data-aos="fade-up" data-aos-delay="400">
+                <div class="card-icon">🎨</div>
+                <h3>UI Tematik</h3>
+                <p>Desain visual yang disesuaikan dengan gradasi warna yang nyaman, membedakan pesan pengguna dan
+                    asisten dengan jelas.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="tech" style="background: white; text-align: center;">
+        <div class="section-header" data-aos="fade-up">
+            <h2>Teknologi di Balik Layar</h2>
+            <p>Dibangun dengan stack teknologi modern yang efisien dan scalable.</p>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; justify-content: center;" data-aos="zoom-in">
+            <div class="tech-pill">🐍 Python 3.10+</div>
+            <div class="tech-pill">🌊 Streamlit</div>
+            <div class="tech-pill">🧠 Llama 3.3 70B</div>
+            <div class="tech-pill">🔌 OpenRouter API</div>
+            <div class="tech-pill">💅 Custom CSS 3</div>
+            <div class="tech-pill">📄 JSON Storage</div>
+        </div>
+    </section>
+
+    <section id="demo"
+        style="background: linear-gradient(135deg, #1a2a6c 0%, #b21f1f 50%, #fdbb2d 100%); color: white; text-align: center; padding: 6rem 5%;">
+        <div data-aos="fade-up">
+            <h2 style="color: white; margin-bottom: 2rem;">Siap Menjelajah Budaya?</h2>
+            <p style="color: rgba(255,255,255,0.9); font-size: 1.2rem; margin-bottom: 3rem;">
+                Aplikasi ini siap dijalankan melalui Streamlit. Pastikan Anda memiliki API Key OpenRouter.
+            </p>
+            <div
+                style="background: rgba(0,0,0,0.3); padding: 20px; border-radius: 10px; display: inline-block; font-family: monospace; text-align: left;">
+                <p>$ pip install streamlit requests</p>
+                <p>$ streamlit run app.py</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 Teman Wisata Project</p>
+        <p>Created with clean code & ❤️ for Indonesian Tourism</p>
+    </footer>
+
+    <!-- Animation Script -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+    </script>
+</body>
+
+</html>
