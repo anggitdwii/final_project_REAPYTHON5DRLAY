@@ -378,6 +378,25 @@ with st.sidebar:
     with col4:
         if st.button("Sulawesi", use_container_width=True):
             st.session_state.region_selected = "Sulawesi"
+
+    col5, col6 = st.columns(2)
+    with col5:
+        if st.button("Papua", use_container_width=True):
+            st.session_state.region_selected = "Papua"
+    with col6:
+        if st.button("Maluku", use_container_width=True):
+            st.session_state.region_selected = "Maluku"
+
+    if st.button("Kalimantan", use_container_width=True):
+        st.session_state.region_selected = "Kalimantan"
+
+    col7, col8 = st.columns(2)
+    with col7:
+        if st.button("Lombok", use_container_width=True):
+            st.session_state.region_selected = "Lombok"
+    with col8:
+        if st.button("NTT", use_container_width=True):
+            st.session_state.region_selected = "NTT"        
     
     if st.session_state.region_selected:
         st.success(f"Fokus daerah: **{st.session_state.region_selected}**")
